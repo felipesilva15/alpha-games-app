@@ -4,6 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
+
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -17,45 +20,34 @@ import senac.alphagames.ui.login.LoginActivity;
 
 public class ErrorUtils {
     public static ApiError parseError(Response<?> response) {
-        Converter<ResponseBody, ApiError> converter = HttpServiceGenerator.retrofit.responseBodyConverter(ApiError.class, new Annotation[0]);
-
-        ApiError error;
-
         try {
-            error = converter.convert(response.errorBody());
-        } catch (IOException e) {
-            return new ApiError();
+            ResponseBody errorBody = response.errorBody();
+            Log.i("ErrorUtils", response.raw().toString());
+
+            if (errorBody != null) {
+                String errorBodyString = errorBody.string();
+                Gson gson = new Gson();
+                return gson.fromJson(errorBodyString, ApiError.class);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        return error;
+        return new ApiError();
     }
 
     public static void showErrorMessage(Context context, String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Erro");
-        builder.setMessage(message);
-        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        SharedUtils.showMessage(context, "Erro", message);
     }
 
-    public static boolean isValidResponse(Context context, Response<?> response) {
-        if (response.isSuccessful()) {
-            return true;
-        }
-
-        if (response.code() == 401 || response.code() == 403) {
+    public static void validateUnsuccessfulResponse(Context context, Response<?> response) {
+        if ((response.code() == 401 || response.code() == 403) && !(context instanceof LoginActivity)) {
             Intent loginIntent = new Intent(context, LoginActivity.class);
             context.startActivity(loginIntent);
-
-            return false;
+            return;
         }
 
-//        ApiError apiError = parseError(response);
-//        showErrorMessage(context, apiError.getMessage());
-
-        showErrorMessage(context, "Ocorreu um erro. Tente novamente mais tarde.");
-        return false;
+        ApiError apiError = parseError(response);
+        showErrorMessage(context, apiError.getMessage());
     }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.api.service.AuthenticationClient;
 import senac.alphagames.api.service.UserClient;
 import senac.alphagames.helper.ErrorUtils;
+import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.TokenInfo;
 import senac.alphagames.model.User;
 import senac.alphagames.ui.main.MainActivity;
@@ -33,6 +35,9 @@ public class LoginActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        // Realiza o login
+        login();
     }
 
     @Override
@@ -51,24 +56,27 @@ public class LoginActivity extends AppCompatActivity {
     private void login() {
         // Obtém o client e a chamada do objeto da requisição
         AuthenticationClient httpClient = HttpServiceGenerator.createHttpService(LoginActivity.this, AuthenticationClient.class);
-        Call<TokenInfo> call = httpClient.login(new User("felipe.silvae@alphagames.com.br", "123"));
+        Call<TokenInfo> call = httpClient.login(new User("felipe.silva@alphagames.com.br", "123"));
 
         // Executa a requisição
         call.enqueue(new Callback<TokenInfo>() {
             @Override
             public void onResponse(Call<TokenInfo> call, Response<TokenInfo> response) {
-                if (!ErrorUtils.isValidResponse(LoginActivity.this, response)) {
+                if (!response.isSuccessful()) {
+                    ErrorUtils.validateUnsuccessfulResponse(LoginActivity.this, response);
                     return;
                 }
 
                 TokenInfo resp = response.body();
+                Log.i("login", "Token de acesso: " + resp.getAccess_token());
+                //Toast.makeText(LoginActivity.this, resp.getAccess_token(), Toast.LENGTH_SHORT);
 
                 getSharedPreferences("AlphaGamesPrefs", Context.MODE_PRIVATE)
                     .edit()
                     .putString("JwtToken", resp.getAccess_token())
                     .apply();
 
-                Toast.makeText(LoginActivity.this, resp.getAccess_token(), Toast.LENGTH_SHORT);
+                SharedUtils.showMessage(LoginActivity.this, "Atenção", "Token de acesso: " + resp.getAccess_token());
             }
 
             @Override
