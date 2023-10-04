@@ -1,4 +1,4 @@
-package senac.alphagames.api;
+package senac.alphagames.api.service;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import senac.alphagames.model.User;
 
 public interface UserClient {
     @GET("user")
-    Call<List<User>> index();
+    Call<List<User>> getUsers();
 
     @GET("user/{id}")
-    Call<User> show(@Path("id") int id);
+    Call<User> getUserById(@Path("id") int id);
 
     @POST("user")
-    Call<User> store (@Body User user);
+    Call<User> createUser(@Body User user);
 }

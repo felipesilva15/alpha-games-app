@@ -16,6 +16,11 @@ public class User {
         this.USUARIO_CPF = USUARIO_CPF;
     }
 
+    public User(String USUARIO_EMAIL, String USUARIO_SENHA) {
+        this.USUARIO_EMAIL = USUARIO_EMAIL;
+        this.USUARIO_SENHA = USUARIO_SENHA;
+    }
+
     public String getUSUARIO_NOME() {
         return USUARIO_NOME;
     }
