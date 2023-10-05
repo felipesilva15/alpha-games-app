@@ -1,15 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.AlphaGames" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.AlphaGames" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
     </style>
 
-    <style name="DefaultThemeWithActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">#472468</item>
+    <style name="DefaultThemeWithActionBar" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primary</item>
     </style>
 
     <style name="Theme.AlphaGames" parent="Base.Theme.AlphaGames">
-        <item name="colorPrimary">#472468</item>
+        <item name="colorPrimary">@color/primary</item>
     </style>
 </resources>

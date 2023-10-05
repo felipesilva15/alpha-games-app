@@ -31,11 +31,14 @@ public class HttpServiceGenerator {
                 Request request = chain.request();
                 Request.Builder newRequest = request.newBuilder();
 
+                // Authorization - JWT Token
                 String token = context.getSharedPreferences("AlphaGamesPrefs", Context.MODE_PRIVATE).getString("JwtToken", "");
-
                 if (!token.isEmpty()) {
                     newRequest.header("Authorization", String.format("Bearer %s", token));
                 }
+
+                // Accept - Sempre deve ter retorno em JSON
+                newRequest.header("Accept", "application/json");
 
                 return chain.proceed(newRequest.build());
             }
