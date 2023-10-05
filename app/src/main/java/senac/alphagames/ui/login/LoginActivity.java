@@ -25,6 +25,7 @@ import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.api.service.AuthenticationClient;
 import senac.alphagames.api.service.UserClient;
 import senac.alphagames.helper.ErrorUtils;
+import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.TokenInfo;
 import senac.alphagames.model.User;
@@ -108,6 +109,9 @@ public class LoginActivity extends AppCompatActivity {
         String email = Objects.requireNonNull(inputEmail.getEditText()).getText().toString();
         String password = Objects.requireNonNull(inputPassword.getEditText()).getText().toString();
 
+        final LoadingDialog loadingDialog = new LoadingDialog(LoginActivity.this);
+        loadingDialog.startLoadingDialog();
+
         // Obtém o client e a chamada do objeto da requisição
         AuthenticationClient httpClient = HttpServiceGenerator.createHttpService(LoginActivity.this, AuthenticationClient.class);
         Call<TokenInfo> call = httpClient.login(new User(email, password));
@@ -136,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<TokenInfo> call, Throwable t) {
                 ErrorUtils.showErrorMessage(LoginActivity.this, getString(R.string.network_error_message));
+                loadingDialog.dismissDialog();
             }
         });
     }
