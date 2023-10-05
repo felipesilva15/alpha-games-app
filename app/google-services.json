@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "578069769819",
+    "project_id": "e-commerce-f4d16",
+    "storage_bucket": "e-commerce-f4d16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578069769819:android:dd72f9157701c751f3197e",
+        "android_client_info": {
+          "package_name": "senac.alphagames"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeY1WUGP3Yeq1Nz8J7UC5xF3Bgh64i-0A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
