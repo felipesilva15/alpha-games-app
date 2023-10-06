@@ -1,24 +1,14 @@
 package senac.alphagames.ui.main;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.widget.Toast;
-
-import retrofit2.Call;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import retrofit2.Callback;
-import retrofit2.Response;
 import senac.alphagames.R;
-import senac.alphagames.api.HttpServiceGenerator;
-import senac.alphagames.api.service.UserClient;
 import senac.alphagames.databinding.ActivityMainBinding;
-import senac.alphagames.helper.ErrorUtils;
-import senac.alphagames.model.User;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;

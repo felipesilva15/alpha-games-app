@@ -4,13 +4,14 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
     </style>
 
     <style name="DefaultThemeWithActionBar" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
     </style>
 
     <style name="Theme.AlphaGames" parent="Base.Theme.AlphaGames">
-        <item name="colorPrimary">@color/primary</item>
     </style>
 </resources>

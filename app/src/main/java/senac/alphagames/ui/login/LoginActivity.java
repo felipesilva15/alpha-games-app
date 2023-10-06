@@ -1,18 +1,15 @@
 package senac.alphagames.ui.login;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
@@ -23,13 +20,11 @@ import retrofit2.Response;
 import senac.alphagames.R;
 import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.api.service.AuthenticationClient;
-import senac.alphagames.api.service.UserClient;
 import senac.alphagames.helper.ErrorUtils;
 import senac.alphagames.helper.LoadingDialog;
-import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.TokenInfo;
 import senac.alphagames.model.User;
-import senac.alphagames.ui.main.MainActivity;
+import senac.alphagames.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private TextInputLayout inputEmail;
@@ -51,9 +46,16 @@ public class LoginActivity extends AppCompatActivity {
         inputEmail = findViewById(R.id.textInputLayoutEmail);
         inputPassword = findViewById(R.id.textInputLayoutPassword);
 
-        // Define o botão para realizar o login
+        // Define a ação do botão de login
         Button btnLogin = findViewById(R.id.buttonLogin);
         btnLogin.setOnClickListener(view -> login());
+
+        // Define a ação do botão de registro
+        Button btnRegister = findViewById(R.id.buttonRegister);
+        btnRegister.setOnClickListener(view -> {
+            Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(registerIntent);
+        });
     }
 
     @Override
@@ -106,9 +108,11 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // Obtém os dados a serem enviados na requisição
         String email = Objects.requireNonNull(inputEmail.getEditText()).getText().toString();
         String password = Objects.requireNonNull(inputPassword.getEditText()).getText().toString();
 
+        // Exibe o dialog de loading
         final LoadingDialog loadingDialog = new LoadingDialog(LoginActivity.this);
         loadingDialog.startLoadingDialog();
 
@@ -139,8 +143,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<TokenInfo> call, Throwable t) {
-                ErrorUtils.showErrorMessage(LoginActivity.this, getString(R.string.network_error_message));
                 loadingDialog.dismissDialog();
+                ErrorUtils.showErrorMessage(LoginActivity.this, getString(R.string.network_error_message));
             }
         });
     }

@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Alpha Games</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="network_error_message">Erro de rede. Verifique sua conexão e tente novamente.</string>
-    <string name="hint_email">E-mail</string>
-    <string name="hint_password">Senha</string>
+    <string name="network_error_message">Falha ao se conectar com o serviço externo. Verifique sua conexão com a internet e tente novamente.</string>
+    <string name="hint_username">Nome*</string>
+    <string name="hint_cpf">CPF*</string>
+    <string name="hint_email">E-mail*</string>
+    <string name="hint_password">Senha*</string>
+    <string name="hint_password_confirm">Confirme sua senha*</string>
 </resources>
