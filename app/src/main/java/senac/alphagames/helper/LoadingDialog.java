@@ -1,32 +1,33 @@
 package senac.alphagames.helper;
 
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
 
 import senac.alphagames.R;
 
-public class LoadingDialog {
-    private Activity activity;
-    private AlertDialog dialog;
+public class LoadingDialog extends Dialog {
+    public LoadingDialog(Context context) {
+        super(context);
 
-    public LoadingDialog(Activity activeActivity) {
-        activity = activeActivity;
-    }
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.gravity = Gravity.CENTER;
+        getWindow().setAttributes(params);
 
-    public void startLoadingDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        // Define o fundo como transparente
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        LayoutInflater inflater = activity.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.loading_diaglog, null));
-        builder.setCancelable(false);
+        // Retira das ações de cancelamento e dialog
+        setCancelable(false);
+        setOnCancelListener(null);
 
-        dialog = builder.create();
-        dialog.show();
-    }
-
-    public void dismissDialog() {
-        dialog.dismiss();
+        // Define a view
+        View view = LayoutInflater.from(context).inflate(R.layout.loading_diaglog, null);
+        setContentView(view);
     }
 }

@@ -1,20 +1,13 @@
 package senac.alphagames.helper;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-
 import okhttp3.ResponseBody;
-import retrofit2.Converter;
 import retrofit2.Response;
-import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.model.ApiError;
 import senac.alphagames.ui.login.LoginActivity;
 

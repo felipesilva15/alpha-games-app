@@ -24,12 +24,9 @@ import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.model.User;
 
 public class RegisterActivity extends AppCompatActivity {
-    private TextInputLayout inputUsername;
-    private TextInputLayout inputCpf;
-    private TextInputLayout inputEmail;
-    private TextInputLayout inputPassword;
-    private TextInputLayout inputPasswordConfirm;
+    private TextInputLayout inputUsername, inputCpf, inputEmail, inputPassword, inputPasswordConfirm;
     private boolean isFormatting;
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        loadingDialog = new LoadingDialog(this);
 
         // Define os inputs e valores
         inputUsername = findViewById(R.id.textInputLayoutUsername);
@@ -103,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (email.isEmpty()) {
             inputEmail.setError("Preenchimento obrigatório!");
             isValid = false;
-        } else if (!email.contains("@")) {
+        } else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
             inputEmail.setError("Insira um e-mail válido!");
             isValid = false;
         } else {
@@ -145,8 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
         String password = Objects.requireNonNull(inputPassword.getEditText()).getText().toString();
 
         // Exibe o dialog de loading
-        final LoadingDialog loadingDialog = new LoadingDialog(RegisterActivity.this);
-        loadingDialog.startLoadingDialog();
+        loadingDialog.show();
 
         // Obtém o client e a chamada do objeto da requisição
         UserClient httpClient = HttpServiceGenerator.createHttpService(RegisterActivity.this, UserClient.class);
@@ -157,6 +155,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (!response.isSuccessful()) {
+                    loadingDialog.cancel();
                     ErrorUtils.validateUnsuccessfulResponse(RegisterActivity.this, response);
                     return;
                 }
@@ -166,7 +165,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                loadingDialog.dismissDialog();
+                loadingDialog.cancel();
                 ErrorUtils.showErrorMessage(RegisterActivity.this, getString(R.string.network_error_message));
             }
         });

@@ -27,8 +27,8 @@ import senac.alphagames.model.User;
 import senac.alphagames.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
-    private TextInputLayout inputEmail;
-    private TextInputLayout inputPassword;
+    private TextInputLayout inputEmail, inputPassword;
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        loadingDialog = new LoadingDialog(this);
 
         // Define os inputs e valores
         inputEmail = findViewById(R.id.textInputLayoutEmail);
@@ -72,34 +74,47 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isValidForm() {
-        String email = Objects.requireNonNull(inputEmail.getEditText()).getText().toString();
-        String password = Objects.requireNonNull(inputPassword.getEditText()).getText().toString();
-
         boolean isValid = true;
 
-        // Validação e-mail
-        if (email.isEmpty()) {
-            inputEmail.setError("Preenchimento obrigatório!");
+        if (!validateEmail()) {
             isValid = false;
-        } else if (!email.contains("@")) {
-            inputEmail.setError("Insira um e-mail válido!");
-            isValid = false;
-        } else {
-            inputEmail.setError("");
         }
 
-        // Validação senha
-        if (password.isEmpty()) {
-            inputPassword.setError("Preenchimento obrigatório!");
+        if (!validatePassword()) {
             isValid = false;
-        } else if (password.length() < 3) {
-            inputPassword.setError("A senha precisa ter pelo menos 3 caracteres!");
-            isValid = false;
-        } else {
-            inputPassword.setError("");
         }
 
         return(isValid);
+    }
+
+    private boolean validateEmail() {
+        String email = Objects.requireNonNull(inputEmail.getEditText()).getText().toString();
+
+        if (email.isEmpty()) {
+            inputEmail.setError("Preenchimento obrigatório!");
+            return false;
+        } else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
+            inputEmail.setError("Insira um e-mail válido!");
+            return true;
+        }
+
+        inputEmail.setError("");
+        return true;
+    }
+
+    private boolean validatePassword() {
+        String password = Objects.requireNonNull(inputPassword.getEditText()).getText().toString();
+
+        if (password.isEmpty()) {
+            inputPassword.setError("Preenchimento obrigatório!");
+            return false;
+        } else if (password.length() < 3) {
+            inputPassword.setError("A senha precisa ter pelo menos 3 caracteres!");
+            return false;
+        }
+
+        inputPassword.setError("");
+        return true;
     }
 
     private void login() {
@@ -113,8 +128,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = Objects.requireNonNull(inputPassword.getEditText()).getText().toString();
 
         // Exibe o dialog de loading
-        final LoadingDialog loadingDialog = new LoadingDialog(LoginActivity.this);
-        loadingDialog.startLoadingDialog();
+        loadingDialog.show();
 
         // Obtém o client e a chamada do objeto da requisição
         AuthenticationClient httpClient = HttpServiceGenerator.createHttpService(LoginActivity.this, AuthenticationClient.class);
@@ -125,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<TokenInfo> call, Response<TokenInfo> response) {
                 if (!response.isSuccessful()) {
+                    loadingDialog.cancel();
                     ErrorUtils.validateUnsuccessfulResponse(LoginActivity.this, response);
                     return;
                 }
@@ -143,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<TokenInfo> call, Throwable t) {
-                loadingDialog.dismissDialog();
+                loadingDialog.cancel();
                 ErrorUtils.showErrorMessage(LoginActivity.this, getString(R.string.network_error_message));
             }
         });
