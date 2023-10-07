@@ -90,12 +90,14 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validateEmail() {
         String email = Objects.requireNonNull(inputEmail.getEditText()).getText().toString();
 
+        ///^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i
+
         if (email.isEmpty()) {
             inputEmail.setError("Preenchimento obrigatório!");
             return false;
-        } else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
+        } else if (!email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$")) {
             inputEmail.setError("Insira um e-mail válido!");
-            return true;
+            return false;
         }
 
         inputEmail.setError("");

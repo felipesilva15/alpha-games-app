@@ -102,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (email.isEmpty()) {
             inputEmail.setError("Preenchimento obrigatório!");
             isValid = false;
-        } else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
+        } else if (!email.matches("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$")) {
             inputEmail.setError("Insira um e-mail válido!");
             isValid = false;
         } else {
