@@ -5,18 +5,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Home"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/ic_home"
         android:id="@+id/home_menu_item" />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Explorar"
-        android:icon="@drawable/baseline_shopping_basket_24"
+        android:icon="@drawable/ic_shopping_basket"
         android:id="@+id/explore_menu_item" />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Perfil"
-        android:icon="@drawable/baseline_person_24"
+        android:icon="@drawable/ic_person"
         android:id="@+id/profile_menu_item" />
 </menu>
