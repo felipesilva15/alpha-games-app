@@ -13,4 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-HttpServiceGenerator.java
+app/src/main/java/senac/alphagames/api/HttpServiceGenerator.java
