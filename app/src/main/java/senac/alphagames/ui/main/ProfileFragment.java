@@ -1,5 +1,6 @@
 package senac.alphagames.ui.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,7 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import senac.alphagames.R;
+import senac.alphagames.api.HttpServiceGenerator;
+import senac.alphagames.api.service.AuthClient;
+import senac.alphagames.helper.ErrorUtils;
+import senac.alphagames.helper.LoadingDialog;
+import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.ui.login.LoginActivity;
 
 /**
@@ -23,6 +32,7 @@ public class ProfileFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private LoadingDialog loadingDialog;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -60,6 +70,8 @@ public class ProfileFragment extends Fragment {
 
         Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
         startActivity(loginIntent);
+
+        loadingDialog = new LoadingDialog(getContext());
     }
 
     @Override
@@ -67,5 +79,39 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
+    }
+
+    private void logout() {
+        loadingDialog.show();
+
+        AuthClient client = HttpServiceGenerator.createHttpService(getContext(), AuthClient.class);
+        Call<Void> call = client.logout();
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    ErrorUtils.validateUnsuccessfulResponse(getContext(), response);
+                    loadingDialog.cancel();
+                }
+
+                // Clean a JWT token
+                getContext().getSharedPreferences("AlphaGamesPrefs", Context.MODE_PRIVATE)
+                        .edit()
+                        .putString("JwtToken", "")
+                        .apply();
+
+                // Show successfully logout message
+                SharedUtils.showMessage(getContext(), "Atenção", "Logout efetuado com sucesso.");
+
+                // What to do?
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                ErrorUtils.showErrorMessage(getContext(), getString(R.string.network_error_message));
+                loadingDialog.cancel();
+            }
+        });
     }
 }

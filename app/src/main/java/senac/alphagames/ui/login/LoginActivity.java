@@ -19,7 +19,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import senac.alphagames.R;
 import senac.alphagames.api.HttpServiceGenerator;
-import senac.alphagames.api.service.AuthenticationClient;
+import senac.alphagames.api.service.AuthClient;
 import senac.alphagames.helper.ErrorUtils;
 import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.model.TokenInfo;
@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
         loadingDialog.show();
 
         // Obtém o client e a chamada do objeto da requisição
-        AuthenticationClient httpClient = HttpServiceGenerator.createHttpService(LoginActivity.this, AuthenticationClient.class);
+        AuthClient httpClient = HttpServiceGenerator.createHttpService(LoginActivity.this, AuthClient.class);
         Call<TokenInfo> call = httpClient.login(new User(email, password));
 
         // Executa a requisição
