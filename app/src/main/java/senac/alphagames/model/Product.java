@@ -10,8 +10,9 @@ public class Product {
     private double PRODUTO_DESCONTO;
     private int CATEGORIA_ID;
     private int PRODUTO_ATIVO;
-    private Category CATEGORIA;
-    private List<ProductImage> PRODUTO_IMAGEM;
+    private int PRODUTO_QTD;
+    private Category category;
+    private List<ProductImage> images;
 
     public Product() {
     }
@@ -43,12 +44,15 @@ public class Product {
     public int getPRODUTO_ATIVO() {
         return PRODUTO_ATIVO;
     }
-
-    public Category getCATEGORIA() {
-        return CATEGORIA;
+    public int getPRODUTO_QTD() {
+        return PRODUTO_QTD;
     }
 
-    public List<ProductImage> getPRODUTO_IMAGEM() {
-        return PRODUTO_IMAGEM;
+    public Category getCategory() {
+        return category;
+    }
+
+    public List<ProductImage> getImages() {
+        return images;
     }
 }
