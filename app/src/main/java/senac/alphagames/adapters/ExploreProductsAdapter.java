@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -41,8 +42,6 @@ public class ExploreProductsAdapter extends RecyclerView.Adapter<ExploreProducts
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.i("Adapter", list.get(position).getImages().get(0).getIMAGEM_URL());
-
         GlideTrustManager.allowAllSSL();
 
         Glide.with(context).load(list.get(position).getImages().get(0).getIMAGEM_URL()).into(holder.image);
@@ -57,6 +56,9 @@ public class ExploreProductsAdapter extends RecyclerView.Adapter<ExploreProducts
             holder.discount.setText("");
         }
 
+        holder.itemView.setOnClickListener(view -> {
+            Log.i("ItemView", "ID do produto: " + list.get(position).getPRODUTO_ID());
+        });
     }
 
     @Override
