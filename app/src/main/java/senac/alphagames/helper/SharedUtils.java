@@ -2,10 +2,13 @@ package senac.alphagames.helper;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.widget.ImageView;
 
 import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Locale;
+
+import senac.alphagames.R;
 
 public class SharedUtils {
     public static void showMessage(Context context, String title, String message) {
@@ -29,5 +32,11 @@ public class SharedUtils {
 
         // Formate o valor e retorne como uma string
         return currencyFormat.format(value);
+    }
+
+    public static void setInvalidImageToImageView(ImageView image) {
+        image.setImageResource(R.drawable.ic_image_not_supported);
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        image.setPadding(32, 32, 32, 32);
     }
 }
