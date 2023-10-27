@@ -7,4 +7,5 @@
     <string name="hint_email">E-mail*</string>
     <string name="hint_password">Senha*</string>
     <string name="hint_password_confirm">Confirme sua senha*</string>
+    <string name="text_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec tortor feugiat, rutrum ex sit amet, semper nisl. Ut fermentum, metus eu feugiat placerat, urna nulla consequat mauris, sed pellentesque libero nunc convallis nunc. Donec auctor dictum dolor eget iaculis. Donec pulvinar nibh euismod nibh maximus gravida. Cras egestas, ipsum ac lobortis feugiat, leo lectus porta ipsum, ut posuere turpis tortor id dolor. Donec nisl risus, rutrum sit amet fringilla sed, suscipit bibendum odio. Pellentesque ac semper urna. Suspendisse convallis elit ut bibendum sodales. Nunc rhoncus ultrices ligula, nec blandit nisi rhoncus eu.</string>
 </resources>
