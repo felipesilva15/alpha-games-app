@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Product name"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
 
@@ -38,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Category"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textColor="@color/black"/>
 
             <LinearLayout
@@ -51,14 +52,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="R$ 99,99"
-                    android:textSize="12sp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/ListitemExploreProductDiscount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="R$ 120,00"
-                    android:textSize="10sp"
+                    android:textSize="14sp"
                     android:layout_marginLeft="8dp" />
 
             </LinearLayout>

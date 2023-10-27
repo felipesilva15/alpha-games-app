@@ -1,6 +1,7 @@
 package senac.alphagames.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import senac.alphagames.R;
 import senac.alphagames.helper.GlideTrustManager;
 import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.Product;
+import senac.alphagames.ui.product.ProductActivity;
 
 public class ExploreProductsAdapter extends RecyclerView.Adapter<ExploreProductsAdapter.ViewHolder> {
     Context context;
@@ -44,7 +46,12 @@ public class ExploreProductsAdapter extends RecyclerView.Adapter<ExploreProducts
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         GlideTrustManager.allowAllSSL();
 
-        Glide.with(context).load(list.get(position).getImages().get(0).getIMAGEM_URL()).into(holder.image);
+        if (list.get(position).getImages() != null && list.get(position).getImages().size() > 0 && list.get(position).getImages().get(0).getIMAGEM_URL().contains("https")) {
+            Glide.with(context).load(list.get(position).getImages().get(0).getIMAGEM_URL()).into(holder.image);
+        } else {
+            SharedUtils.setInvalidImageToImageView(holder.image);
+        }
+
         holder.name.setText(list.get(position).getPRODUTO_NOME());
         holder.category.setText(list.get(position).getCategory().getCATEGORIA_NOME());
         holder.price.setText(SharedUtils.formatToCurrency(list.get(position).getPRODUTO_PRECO() - list.get(position).getPRODUTO_DESCONTO()));
@@ -58,6 +65,10 @@ public class ExploreProductsAdapter extends RecyclerView.Adapter<ExploreProducts
 
         holder.itemView.setOnClickListener(view -> {
             Log.i("ItemView", "ID do produto: " + list.get(position).getPRODUTO_ID());
+
+            Intent intent = new Intent(context, ProductActivity.class);
+            intent.putExtra("productId", list.get(position).getPRODUTO_ID());
+            context.startActivity(intent);
         });
     }
 
