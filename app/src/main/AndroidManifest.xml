@@ -19,7 +19,7 @@
             android:name=".ui.product.ProductActivity"
             android:exported="false"
             android:label="Detalhes do produto"
-            android:theme="@style/DefaultThemeWithActionBar"/>
+            android:theme="@style/DefaultThemeWithActionBar" />
         <activity
             android:name=".ui.register.RegisterActivity"
             android:exported="false"
@@ -32,6 +32,9 @@
             android:theme="@style/DefaultThemeWithActionBar" />
         <activity
             android:name=".ui.main.MainActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
