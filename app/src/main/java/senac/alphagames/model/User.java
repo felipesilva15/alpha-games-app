@@ -1,6 +1,7 @@
 package senac.alphagames.model;
 
 public class User {
+    private int USUARIO_ID;
     private String USUARIO_NOME;
     private String USUARIO_EMAIL;
     private String USUARIO_SENHA;
@@ -19,6 +20,10 @@ public class User {
     public User(String USUARIO_EMAIL, String USUARIO_SENHA) {
         this.USUARIO_EMAIL = USUARIO_EMAIL;
         this.USUARIO_SENHA = USUARIO_SENHA;
+    }
+
+    public int getUSUARIO_ID() {
+        return USUARIO_ID;
     }
 
     public String getUSUARIO_NOME() {
