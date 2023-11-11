@@ -18,4 +18,7 @@ public interface UserClient {
 
     @POST("user")
     Call<User> createUser(@Body User user);
+
+    @GET("me")
+    Call<User> getCurrentUser();
 }

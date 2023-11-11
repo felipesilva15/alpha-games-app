@@ -8,12 +8,13 @@ import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpServiceGenerator {
-    private static final String BASE_URL = "http://192.168.1.14:8000/api/";
+    private static final String BASE_URL = "http://192.168.1.10:8000/api/";
 
     private static final OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
 
@@ -40,6 +41,11 @@ public class HttpServiceGenerator {
 
             return chain.proceed(newRequest.build());
         });
+
+        // Define se irá exibir um log com todos os dados do body requisição
+//        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+//        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        httpClientBuilder.addInterceptor(loggingInterceptor);
 
         builder = builder.client(httpClientBuilder.build());
         retrofit = builder.build();
