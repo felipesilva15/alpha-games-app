@@ -6,9 +6,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,69 +19,86 @@ import retrofit2.Response;
 import senac.alphagames.R;
 import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.api.service.AuthClient;
+import senac.alphagames.api.service.UserClient;
 import senac.alphagames.helper.ErrorUtils;
 import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.helper.SharedUtils;
+import senac.alphagames.model.User;
 import senac.alphagames.ui.login.LoginActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private LoadingDialog loadingDialog;
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private User user;
+    private TextView txtGreeting, txtPersonalData, txtAddresses, txtOrders, txtLogout;
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
+    public static ProfileFragment newInstance() {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-        Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
-        startActivity(loginIntent);
-
-        loadingDialog = new LoadingDialog(getContext());
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        loadingDialog = new LoadingDialog(getContext());
+
+        txtGreeting = root.findViewById(R.id.TextViewProfileGreeting);
+        txtPersonalData = root.findViewById(R.id.TextViewProfilePersonalData);
+        txtAddresses = root.findViewById(R.id.TextViewProfileAddresses);
+        txtOrders = root.findViewById(R.id.TextViewProfileOrders);
+        txtLogout = root.findViewById(R.id.TextViewProfileLogout);
+
+        loadCurrentUserData();
+
+        // Define os clicks das opções do menu
+        txtLogout.setOnClickListener(view -> logout());
+
+        return root;
+    }
+
+    private void loadCurrentUserData() {
+        loadingDialog.show();
+        UserClient client = HttpServiceGenerator.createHttpService(getContext(), UserClient.class);
+        Call<User> call = client.getCurrentUser();
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (!response.isSuccessful()) {
+                    ErrorUtils.validateUnsuccessfulResponse(getContext(), response);
+                    loadingDialog.cancel();
+                    return;
+                }
+
+                user = response.body();
+
+                // Define a saudação
+                txtGreeting.setText(String.format("Olá, %s 👋", user.getUSUARIO_NOME()));
+
+//                Toast.makeText(getContext(), user.getUSUARIO_NOME(),Toast.LENGTH_SHORT).show();
+//                Log.i("ProfileFragment", user.getUSUARIO_NOME());
+
+                loadingDialog.cancel();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                ErrorUtils.showErrorMessage(getContext(), getString(R.string.network_error_message));
+                loadingDialog.cancel();
+            }
+        });
     }
 
     private void logout() {
@@ -93,6 +113,7 @@ public class ProfileFragment extends Fragment {
                 if (!response.isSuccessful()) {
                     ErrorUtils.validateUnsuccessfulResponse(getContext(), response);
                     loadingDialog.cancel();
+                    return;
                 }
 
                 // Clean a JWT token
@@ -103,6 +124,7 @@ public class ProfileFragment extends Fragment {
 
                 // Show successfully logout message
                 SharedUtils.showMessage(getContext(), "Atenção", "Logout efetuado com sucesso.");
+                loadingDialog.cancel();
 
                 // What to do?
             }
