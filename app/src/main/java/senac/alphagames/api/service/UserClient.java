@@ -7,6 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import senac.alphagames.model.Address;
 import senac.alphagames.model.User;
 
 public interface UserClient {
@@ -21,4 +22,7 @@ public interface UserClient {
 
     @GET("me")
     Call<User> getCurrentUser();
+
+    @GET("user/adresses")
+    Call<List<Address>> getAdresses();
 }
