@@ -16,6 +16,16 @@
         android:theme="@style/Theme.AlphaGames"
         tools:targetApi="31">
         <activity
+            android:name=".ui.address.AddresRegistryActivity"
+            android:exported="false"
+            android:label="Endereço"
+            android:theme="@style/DefaultThemeWithActionBar"/>
+        <activity
+            android:name=".ui.address.AddressConsultActivity"
+            android:exported="false"
+            android:label="Endereços"
+            android:theme="@style/DefaultThemeWithActionBar"/>
+        <activity
             android:name=".ui.product.ProductActivity"
             android:exported="false"
             android:label="Detalhes do produto"
@@ -32,7 +42,7 @@
             android:theme="@style/DefaultThemeWithActionBar" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">
