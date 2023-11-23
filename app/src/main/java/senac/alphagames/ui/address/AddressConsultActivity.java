@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -25,6 +28,7 @@ import senac.alphagames.model.Address;
 public class AddressConsultActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     List<Address> addressList;
+    Button addAddresButton;
     private AddressConsultAdapter addressConsultAdapter;
     private RecyclerView adressesRec;
 
@@ -42,6 +46,9 @@ public class AddressConsultActivity extends AppCompatActivity {
 
         loadingDialog = new LoadingDialog(this);
         adressesRec = findViewById(R.id.RecyclerViewAddressConsult);
+        addAddresButton = findViewById(R.id.ButtonAddressConsultAddAddres);
+
+        addAddresButton.setOnClickListener(view -> this.startActivity(new Intent(this, AddressRegistryActivity.class)));
 
         getAdresses();
     }
