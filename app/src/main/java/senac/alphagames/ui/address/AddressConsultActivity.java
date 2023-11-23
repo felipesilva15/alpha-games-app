@@ -2,6 +2,8 @@ package senac.alphagames.ui.address;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,6 +14,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import senac.alphagames.R;
+import senac.alphagames.adapters.AddressConsultAdapter;
+import senac.alphagames.adapters.ExploreProductsAdapter;
 import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.api.service.UserClient;
 import senac.alphagames.helper.ErrorUtils;
@@ -21,6 +25,8 @@ import senac.alphagames.model.Address;
 public class AddressConsultActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     List<Address> addressList;
+    private AddressConsultAdapter addressConsultAdapter;
+    private RecyclerView adressesRec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,9 @@ public class AddressConsultActivity extends AppCompatActivity {
         }
 
         loadingDialog = new LoadingDialog(this);
+        adressesRec = findViewById(R.id.RecyclerViewAddressConsult);
+
+        getAdresses();
     }
 
     @Override
@@ -60,13 +69,19 @@ public class AddressConsultActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Address>> call, Response<List<Address>> response) {
                 if (!response.isSuccessful()) {
-                    loadingDialog.cancel();
                     ErrorUtils.validateUnsuccessfulResponse(AddressConsultActivity.this, response);
+                    loadingDialog.cancel();
 
                     return;
                 }
 
                 addressList = response.body();
+
+                adressesRec.setLayoutManager(new LinearLayoutManager(AddressConsultActivity.this, RecyclerView.VERTICAL, false));
+                addressConsultAdapter = new AddressConsultAdapter(AddressConsultActivity.this, addressList);
+                adressesRec.setAdapter(addressConsultAdapter);
+
+                loadingDialog.cancel();
             }
 
             @Override

@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AlphaGames"
         tools:targetApi="31">
         <activity
-            android:name=".ui.address.AddresRegistryActivity"
+            android:name=".ui.address.AddressRegistryActivity"
             android:exported="false"
             android:label="Endereço"
             android:theme="@style/DefaultThemeWithActionBar"/>

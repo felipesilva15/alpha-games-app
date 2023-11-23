@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.address.AddressConsultActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerViewAddressConsult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="18dp"
+        android:layout_marginTop="32dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

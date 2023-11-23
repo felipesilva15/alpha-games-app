@@ -24,6 +24,7 @@ import senac.alphagames.helper.ErrorUtils;
 import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.User;
+import senac.alphagames.ui.address.AddressConsultActivity;
 import senac.alphagames.ui.login.LoginActivity;
 
 public class ProfileFragment extends Fragment {
@@ -64,6 +65,7 @@ public class ProfileFragment extends Fragment {
 
         // Define os clicks das opções do menu
         txtLogout.setOnClickListener(view -> logout());
+        txtAddresses.setOnClickListener(view -> getContext().startActivity(new Intent(getContext(), AddressConsultActivity.class)));
 
         return root;
     }

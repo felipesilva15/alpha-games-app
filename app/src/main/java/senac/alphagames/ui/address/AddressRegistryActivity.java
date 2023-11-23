@@ -16,14 +16,14 @@ import senac.alphagames.helper.ErrorUtils;
 import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.model.SearchCepDTO;
 
-public class AddresRegistryActivity extends AppCompatActivity {
+public class AddressRegistryActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     SearchCepDTO searchCepDTO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addres_registry);
+        setContentView(R.layout.activity_address_registry);
 
         // Habilita o botão de retorno na ActionBar
         ActionBar actionBar = getSupportActionBar();
@@ -51,14 +51,14 @@ public class AddresRegistryActivity extends AppCompatActivity {
     public void searchCep() {
         loadingDialog.show();
 
-        CepClient client = HttpServiceGenerator.createHttpService(AddresRegistryActivity.this, CepClient.class);
+        CepClient client = HttpServiceGenerator.createHttpService(AddressRegistryActivity.this, CepClient.class);
         Call<SearchCepDTO> call = client.searchCep("01001000");
 
         call.enqueue(new Callback<SearchCepDTO>() {
             @Override
             public void onResponse(Call<SearchCepDTO> call, Response<SearchCepDTO> response) {
                 if (!response.isSuccessful()) {
-                    ErrorUtils.validateUnsuccessfulResponse(AddresRegistryActivity.this, response);
+                    ErrorUtils.validateUnsuccessfulResponse(AddressRegistryActivity.this, response);
                     loadingDialog.cancel();
 
                     return;
@@ -70,7 +70,7 @@ public class AddresRegistryActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<SearchCepDTO> call, Throwable t) {
                 loadingDialog.cancel();
-                ErrorUtils.showErrorMessage(AddresRegistryActivity.this, getString(R.string.network_error_message));
+                ErrorUtils.showErrorMessage(AddressRegistryActivity.this, getString(R.string.network_error_message));
             }
         });
     }
