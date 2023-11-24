@@ -6,6 +6,6 @@ import retrofit2.http.Path;
 import senac.alphagames.model.SearchCepDTO;
 
 public interface CepClient {
-    @GET("/cep/{cep}")
+    @GET("cep/{cep}")
     Call<SearchCepDTO> searchCep(@Path("cep") String cep);
 }

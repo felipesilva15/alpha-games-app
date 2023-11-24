@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,6 +23,8 @@ public class AddressRegistryActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     SearchCepDTO searchCepDTO;
 
+    TextInputLayout nameInput, cepInput, streetAddressInput, cityInput, stateInput, addressNumberInput, complementInput;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,16 @@ public class AddressRegistryActivity extends AppCompatActivity {
         }
 
         loadingDialog = new LoadingDialog(this);
+        nameInput = findViewById(R.id.TextInputLayoutAddressRegistryName);
+        cepInput = findViewById(R.id.TextInputLayoutAddressRegistryCep);
+        streetAddressInput = findViewById(R.id.TextInputLayoutAddressRegistryStreetAddress);
+        cityInput = findViewById(R.id.TextInputLayoutAddressRegistryCity);
+        stateInput = findViewById(R.id.TextInputLayoutAddressRegistryState);
+        addressNumberInput = findViewById(R.id.TextInputLayoutAddressRegistryAddressNumber);
+        complementInput = findViewById(R.id.TextInputLayoutAddressRegistryComplement);
+
+        // Define a ação do click do ícone de busca de CEP
+        cepInput.setEndIconOnClickListener(view -> searchCep());
     }
 
     @Override
@@ -51,20 +66,33 @@ public class AddressRegistryActivity extends AppCompatActivity {
     public void searchCep() {
         loadingDialog.show();
 
+        String cep = cepInput.getEditText().getText().toString();
+
         CepClient client = HttpServiceGenerator.createHttpService(AddressRegistryActivity.this, CepClient.class);
-        Call<SearchCepDTO> call = client.searchCep("01001000");
+        Call<SearchCepDTO> call = client.searchCep(cep);
 
         call.enqueue(new Callback<SearchCepDTO>() {
             @Override
             public void onResponse(Call<SearchCepDTO> call, Response<SearchCepDTO> response) {
                 if (!response.isSuccessful()) {
                     ErrorUtils.validateUnsuccessfulResponse(AddressRegistryActivity.this, response);
+
+                    streetAddressInput.getEditText().setText("");
+                    cityInput.getEditText().setText("");
+                    stateInput.getEditText().setText("");
+
                     loadingDialog.cancel();
 
                     return;
                 }
 
                 searchCepDTO = response.body();
+
+                streetAddressInput.getEditText().setText(searchCepDTO.getLogradouro());
+                cityInput.getEditText().setText(searchCepDTO.getCidade());
+                stateInput.getEditText().setText(searchCepDTO.getUf());
+
+                loadingDialog.cancel();
             }
 
             @Override

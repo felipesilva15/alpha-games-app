@@ -2,10 +2,16 @@
     <string name="app_name">Alpha Games</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="network_error_message">Falha ao se conectar com o serviço externo. Verifique sua conexão com a internet e tente novamente.</string>
-    <string name="hint_username">Nome*</string>
+    <string name="hint_name">Nome*</string>
     <string name="hint_cpf">CPF*</string>
     <string name="hint_email">E-mail*</string>
     <string name="hint_password">Senha*</string>
     <string name="hint_password_confirm">Confirme sua senha*</string>
     <string name="text_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec tortor feugiat, rutrum ex sit amet, semper nisl. Ut fermentum, metus eu feugiat placerat, urna nulla consequat mauris, sed pellentesque libero nunc convallis nunc. Donec auctor dictum dolor eget iaculis. Donec pulvinar nibh euismod nibh maximus gravida. Cras egestas, ipsum ac lobortis feugiat, leo lectus porta ipsum, ut posuere turpis tortor id dolor. Donec nisl risus, rutrum sit amet fringilla sed, suscipit bibendum odio. Pellentesque ac semper urna. Suspendisse convallis elit ut bibendum sodales. Nunc rhoncus ultrices ligula, nec blandit nisi rhoncus eu.</string>
+    <string name="hint_cep">CEP*</string>
+    <string name="hint_street_addres">Logradouro*</string>
+    <string name="hint_city">Cidade*</string>
+    <string name="hint_state">Estado*</string>
+    <string name="hint_address_number">Número*</string>
+    <string name="hint_complement">Complemento</string>
 </resources>

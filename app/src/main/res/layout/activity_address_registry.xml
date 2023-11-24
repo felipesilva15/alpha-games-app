@@ -6,4 +6,158 @@
     android:layout_height="match_parent"
     tools:context=".ui.address.AddressRegistryActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginVertical="32dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TextInputLayoutAddressRegistryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_name"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_error">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TextInputLayoutAddressRegistryCep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="@string/hint_cep"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_search"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_error">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="8"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TextInputLayoutAddressRegistryStreetAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_street_addres"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
+                app:errorEnabled="true"
+                android:enabled="false"
+                app:errorIconDrawable="@drawable/ic_error">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TextInputLayoutAddressRegistryCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_city"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
+                app:errorEnabled="true"
+                android:enabled="false"
+                app:errorIconDrawable="@drawable/ic_error">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TextInputLayoutAddressRegistryState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_state"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
+                app:errorEnabled="true"
+                android:enabled="false"
+                app:errorIconDrawable="@drawable/ic_error">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TextInputLayoutAddressRegistryAddressNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_address_number"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_error">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TextInputLayoutAddressRegistryComplement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_complement"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_error">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/ButtonAddressRegistrySave"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Salvar"
+                app:backgroundTint="@color/primary" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

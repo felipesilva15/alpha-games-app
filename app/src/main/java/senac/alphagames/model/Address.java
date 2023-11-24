@@ -5,14 +5,14 @@ public class Address {
     private String ENDERECO_CEP;
     private String ENDERECO_NOME;
     private String ENDERECO_LOGRADOURO;
-    private int ENDERECO_NUMERO;
+    private String ENDERECO_NUMERO;
     private String ENDERECO_COMPLEMENTO;
     private String ENDERECO_CIDADE;
     private String ENDERECO_ESTADO;
     private int USUARIO_ID;
     private User user;
 
-    public Address(String ENDERECO_CEP, String ENDERECO_NOME, String ENDERECO_LOGRADOURO, int ENDERECO_NUMERO, String ENDERECO_COMPLEMENTO, String ENDERECO_CIDADE, String ENDERECO_ESTADO) {
+    public Address(String ENDERECO_CEP, String ENDERECO_NOME, String ENDERECO_LOGRADOURO, String ENDERECO_NUMERO, String ENDERECO_COMPLEMENTO, String ENDERECO_CIDADE, String ENDERECO_ESTADO) {
         this.ENDERECO_CEP = ENDERECO_CEP;
         this.ENDERECO_NOME = ENDERECO_NOME;
         this.ENDERECO_LOGRADOURO = ENDERECO_LOGRADOURO;
@@ -54,11 +54,11 @@ public class Address {
         this.ENDERECO_LOGRADOURO = ENDERECO_LOGRADOURO;
     }
 
-    public int getENDERECO_NUMERO() {
+    public String getENDERECO_NUMERO() {
         return ENDERECO_NUMERO;
     }
 
-    public void setENDERECO_NUMERO(int ENDERECO_NUMERO) {
+    public void setENDERECO_NUMERO(String ENDERECO_NUMERO) {
         this.ENDERECO_NUMERO = ENDERECO_NUMERO;
     }
 
