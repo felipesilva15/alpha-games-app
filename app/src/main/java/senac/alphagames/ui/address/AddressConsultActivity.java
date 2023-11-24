@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -29,8 +30,9 @@ public class AddressConsultActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     List<Address> addressList;
     Button addAddresButton;
-    private AddressConsultAdapter addressConsultAdapter;
-    private RecyclerView adressesRec;
+    AddressConsultAdapter addressConsultAdapter;
+    RecyclerView adressesRec;
+    boolean activityWasPaused = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,5 +99,23 @@ public class AddressConsultActivity extends AppCompatActivity {
                 ErrorUtils.showErrorMessage(AddressConsultActivity.this, getString(R.string.network_error_message));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (activityWasPaused) {
+            getAdresses();
+        }
+
+        activityWasPaused = false;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        activityWasPaused = true;
     }
 }
