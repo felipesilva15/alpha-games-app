@@ -49,7 +49,7 @@ public class AddressConsultAdapter extends RecyclerView.Adapter<AddressConsultAd
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, AddressRegistryActivity.class);
 
-            intent.putExtra("id", list.get(position).getENDERECO_ID());
+            intent.putExtra("id", String.valueOf(list.get(position).getENDERECO_ID()));
             context.startActivity(intent);
         });
     }
