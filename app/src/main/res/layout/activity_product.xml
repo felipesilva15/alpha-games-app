@@ -87,30 +87,29 @@
 
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/CardViewProductCart"
+    <LinearLayout
+        android:id="@+id/LinearLayoutProductAddToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="30dp"
-
+        android:background="@drawable/top_rounded_corner"
+        android:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/ButtonProductAddToCart"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="18dp"
-            android:layout_marginVertical="12dp"
+            android:layout_marginHorizontal="9dp"
+            android:layout_marginVertical="6dp"
             android:drawableLeft="@drawable/ic_shopping_cart"
             android:text="Adicionar ao carrinho"
             app:backgroundTint="@color/primary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword" />
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

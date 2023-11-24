@@ -3,6 +3,7 @@ package senac.alphagames.ui.product;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -17,10 +18,12 @@ import senac.alphagames.R;
 import senac.alphagames.adapters.ExploreProductsAdapter;
 import senac.alphagames.adapters.ProductImageAdapter;
 import senac.alphagames.api.HttpServiceGenerator;
+import senac.alphagames.api.service.CartClient;
 import senac.alphagames.api.service.ProductClient;
 import senac.alphagames.helper.ErrorUtils;
 import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.helper.SharedUtils;
+import senac.alphagames.model.CartItem;
 import senac.alphagames.model.Product;
 import senac.alphagames.model.ProductImage;
 
@@ -31,6 +34,7 @@ public class ProductActivity extends AppCompatActivity {
     private TextView name, price, discount, stock, description;
     private ProductImageAdapter productImageAdapter;
     private RecyclerView imagesRec;
+    private Button addToCartButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,9 @@ public class ProductActivity extends AppCompatActivity {
         stock = findViewById(R.id.TextViewProductStock);
         description = findViewById(R.id.TextViewProductDescription);
         imagesRec = findViewById(R.id.RecyclerViewProductImages);
+        addToCartButton = findViewById(R.id.ButtonProductAddToCart);
+
+        addToCartButton.setOnClickListener(view -> addItemToCart());
 
         getProduct();
     }
@@ -111,6 +118,36 @@ public class ProductActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Product> call, Throwable t) {
+                loadingDialog.cancel();
+                ErrorUtils.showErrorMessage(ProductActivity.this, getString(R.string.network_error_message));
+            }
+        });
+    }
+
+    private void addItemToCart () {
+        loadingDialog.show();
+
+        CartItem cartItem = new CartItem(productId, 1);
+
+        CartClient client = HttpServiceGenerator.createHttpService(this, CartClient.class);
+        Call<Void> call = client.addItemToCart(cartItem, productId);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    ErrorUtils.validateUnsuccessfulResponse(ProductActivity.this, response);
+                    loadingDialog.cancel();
+
+                    return;
+                }
+
+                SharedUtils.showMessage(ProductActivity.this, "Atenção", "Item adicionado ao carrinho!");
+                loadingDialog.cancel();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 loadingDialog.cancel();
                 ErrorUtils.showErrorMessage(ProductActivity.this, getString(R.string.network_error_message));
             }
