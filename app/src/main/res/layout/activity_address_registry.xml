@@ -149,9 +149,7 @@
 
             <Button
                 android:id="@+id/ButtonAddressRegistrySave"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/BaseButtonStyleWithMaterial"
                 android:layout_marginTop="32dp"
                 android:text="Salvar"
                 app:backgroundTint="@color/primary" />

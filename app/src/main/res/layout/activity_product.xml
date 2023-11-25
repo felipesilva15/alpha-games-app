@@ -99,14 +99,11 @@
 
         <Button
             android:id="@+id/ButtonProductAddToCart"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="9dp"
-            android:layout_marginVertical="6dp"
+            style="@style/BaseButtonStyleWithMaterial"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="9dp"
             android:drawableLeft="@drawable/ic_shopping_cart"
             android:text="Adicionar ao carrinho"
-            app:backgroundTint="@color/primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

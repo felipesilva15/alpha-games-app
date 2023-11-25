@@ -16,15 +16,20 @@
         android:theme="@style/Theme.AlphaGames"
         tools:targetApi="31">
         <activity
+            android:name=".ui.cart.CartActivity"
+            android:exported="false"
+            android:label="Seu carrinho"
+            android:theme="@style/DefaultThemeWithActionBar"/>
+        <activity
             android:name=".ui.address.AddressRegistryActivity"
             android:exported="false"
             android:label="Endereço"
-            android:theme="@style/DefaultThemeWithActionBar"/>
+            android:theme="@style/DefaultThemeWithActionBar" />
         <activity
             android:name=".ui.address.AddressConsultActivity"
             android:exported="false"
             android:label="Endereços"
-            android:theme="@style/DefaultThemeWithActionBar"/>
+            android:theme="@style/DefaultThemeWithActionBar" />
         <activity
             android:name=".ui.product.ProductActivity"
             android:exported="false"

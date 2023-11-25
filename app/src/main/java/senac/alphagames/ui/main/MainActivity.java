@@ -1,5 +1,6 @@
 package senac.alphagames.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,6 +18,7 @@ import java.util.Objects;
 
 import senac.alphagames.R;
 import senac.alphagames.databinding.ActivityMainBinding;
+import senac.alphagames.ui.cart.CartActivity;
 
 public class MainActivity extends AppCompatActivity {
     public ActivityMainBinding binding;
@@ -95,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.menuItemCart) {
             // Abrir activity de carrinho
+            Intent intent = new Intent(this, CartActivity.class);
+            startActivity(intent);
+
             return true;
         }
 
