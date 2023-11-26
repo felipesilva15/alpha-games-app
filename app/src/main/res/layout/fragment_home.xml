@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.HomeFragment">
+    tools:context=".ui.main.HomeFragment"
+    android:orientation="vertical"
+    android:layout_marginTop="32dp"
+    android:layout_marginHorizontal="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="260dp"
+        android:layout_gravity="center"
+        android:src="@drawable/img_fit_logo"
+        android:backgroundTintMode="multiply"/>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="A melhor loja de games para todas as plataformas e lançamentos no Day One é só aqui, na Alpha Games."/>
 
-</FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="12dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:text="Sobre nós"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="Fundada em 2010, a Alpha Games é mais do que uma empresa de jogos - é um ecossistema apaixonado por criar experiências inovadoras e imersivas para entusiastas de jogos de todo o mundo. Com uma equipe diversificada e talentosa, estamos comprometidos em elevar constantemente os padrões da indústria, buscando a excelência tanto na jogabilidade quanto na narrativa."/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="6dp"
+        android:textAlignment="center"
+        android:text="Na Alpha Games, nossa missão é conectar pessoas por meio da magia dos jogos. Desde jogos independentes até títulos AAA, buscamos inspirar, entreter e desafiar os jogadores, garantindo que cada experiência seja memorável e significativa. Com base em valores de criatividade, integridade e inovação, estamos determinados a moldar o futuro dos jogos, sempre mantendo nossa paixão pelo entretenimento interativo."/>
+
+</LinearLayout>
