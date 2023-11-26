@@ -26,6 +26,7 @@ import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.User;
 import senac.alphagames.ui.address.AddressConsultActivity;
 import senac.alphagames.ui.login.LoginActivity;
+import senac.alphagames.ui.personalData.PersonalDataActivity;
 
 public class ProfileFragment extends Fragment {
     private LoadingDialog loadingDialog;
@@ -63,10 +64,6 @@ public class ProfileFragment extends Fragment {
 
         loadCurrentUserData();
 
-        // Define os clicks das opções do menu
-        txtLogout.setOnClickListener(view -> logout());
-        txtAddresses.setOnClickListener(view -> getContext().startActivity(new Intent(getContext(), AddressConsultActivity.class)));
-
         return root;
     }
 
@@ -89,8 +86,16 @@ public class ProfileFragment extends Fragment {
                 // Define a saudação
                 txtGreeting.setText(String.format("Olá, %s 👋", user.getUSUARIO_NOME()));
 
-//                Toast.makeText(getContext(), user.getUSUARIO_NOME(),Toast.LENGTH_SHORT).show();
-//                Log.i("ProfileFragment", user.getUSUARIO_NOME());
+                // Define os clicks das opções do menu
+                txtPersonalData.setOnClickListener(view -> {
+                    Intent intent = new Intent(getContext(), PersonalDataActivity.class);
+                    intent.putExtra("id", String.valueOf(user.getUSUARIO_ID()));
+
+                    getContext().startActivity(intent);
+                });
+                txtAddresses.setOnClickListener(view -> getContext().startActivity(new Intent(getContext(), AddressConsultActivity.class)));
+                txtOrders.setOnClickListener(view -> {});
+                txtLogout.setOnClickListener(view -> logout());
 
                 loadingDialog.cancel();
             }

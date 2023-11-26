@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import senac.alphagames.model.Address;
 import senac.alphagames.model.CartItem;
@@ -20,6 +21,9 @@ public interface UserClient {
 
     @POST("user")
     Call<User> createUser(@Body User user);
+
+    @PUT("user/{id}")
+    Call<User> updateUser(@Body User user, @Path("id") int id);
 
     @GET("me")
     Call<User> getCurrentUser();
