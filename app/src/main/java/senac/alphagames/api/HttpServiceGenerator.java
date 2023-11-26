@@ -43,9 +43,9 @@ public class HttpServiceGenerator {
         });
 
         // Define se irá exibir um log com todos os dados do body requisição
-//        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-//        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//        httpClientBuilder.addInterceptor(loggingInterceptor);
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        httpClientBuilder.addInterceptor(loggingInterceptor);
 
         builder = builder.client(httpClientBuilder.build());
         retrofit = builder.build();

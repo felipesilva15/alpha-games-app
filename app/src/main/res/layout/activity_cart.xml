@@ -9,7 +9,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerViewCartItems"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="18dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toTopOf="@+id/LinearLayoutAddressConsultNewAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

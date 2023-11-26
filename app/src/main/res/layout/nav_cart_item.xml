@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="6dp">
 
@@ -32,7 +32,9 @@
                 android:text="Product name"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
             <TextView
                 android:id="@+id/TextViewListitemCartCategory"
@@ -72,7 +74,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:layout_weight="1"
                     android:gravity="start">
@@ -82,11 +84,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:clickable="true"
-                        app:fabCustomSize="48dp"
+                        app:fabCustomSize="42dp"
                         app:srcCompat="@drawable/ic_remove" />
 
                     <TextView
-                        android:id="@+id/TextViewCartQtyItem"
+                        android:id="@+id/TextViewListitemCartQtyItem"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="12dp"
@@ -103,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         app:backgroundTint="@color/primary"
-                        app:fabCustomSize="48dp"
+                        app:fabCustomSize="42dp"
                         app:srcCompat="@drawable/ic_add"
                         app:tint="@color/white" />
 
@@ -117,7 +119,7 @@
                     android:gravity="end"
                     android:layout_gravity="bottom"
                     app:tint="@color/red"
-                    android:background="null"
+                    android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_delete" />
 
