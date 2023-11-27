@@ -39,7 +39,7 @@ public class AddressConsultAdapter extends RecyclerView.Adapter<AddressConsultAd
         Address item = list.get(position);
 
         holder.name.setText(item.getENDERECO_NOME());
-        holder.address.setText(SharedUtils.formatAddres(item.getENDERECO_LOGRADOURO(), item.getENDERECO_NUMERO(), item.getENDERECO_COMPLEMENTO(), item.getENDERECO_ESTADO(), item.getENDERECO_CIDADE()));
+        holder.address.setText(SharedUtils.formatAddres(item));
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, AddressRegistryActivity.class);

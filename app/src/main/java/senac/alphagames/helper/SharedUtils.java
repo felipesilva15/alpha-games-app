@@ -9,6 +9,7 @@ import java.util.Currency;
 import java.util.Locale;
 
 import senac.alphagames.R;
+import senac.alphagames.model.Address;
 
 public class SharedUtils {
     public static void showMessage(Context context, String title, String message) {
@@ -40,14 +41,14 @@ public class SharedUtils {
         image.setPadding(32, 32, 32, 32);
     }
 
-    public static String formatAddres(String streetAddres, String number, String complement, String state, String city) {
-        String formattedAddress = streetAddres + ", " + number;
+    public static String formatAddres(Address address) {
+        String formattedAddress = address.getENDERECO_LOGRADOURO() + ", " + address.getENDERECO_NUMERO();
 
-        if (!complement.isEmpty()) {
-            formattedAddress += " - " + complement;
+        if (!address.getENDERECO_COMPLEMENTO().isEmpty()) {
+            formattedAddress += " - " + address.getENDERECO_COMPLEMENTO();
         }
 
-        formattedAddress += " - " + city + ", " + state;
+        formattedAddress += " - " + address.getENDERECO_CIDADE() + ", " + address.getENDERECO_ESTADO();
 
         return formattedAddress;
     }
