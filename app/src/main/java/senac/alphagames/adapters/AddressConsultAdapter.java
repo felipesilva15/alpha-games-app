@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import senac.alphagames.R;
+import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.Address;
 import senac.alphagames.model.Product;
 import senac.alphagames.ui.address.AddressRegistryActivity;
@@ -35,21 +36,15 @@ public class AddressConsultAdapter extends RecyclerView.Adapter<AddressConsultAd
 
     @Override
     public void onBindViewHolder(@NonNull AddressConsultAdapter.ViewHolder holder, int position) {
-        String formattedAddress = list.get(position).getENDERECO_LOGRADOURO() + ", " + list.get(position).getENDERECO_NUMERO();
+        Address item = list.get(position);
 
-        if (!list.get(position).getENDERECO_COMPLEMENTO().isEmpty()) {
-            formattedAddress += " - " + list.get(position).getENDERECO_COMPLEMENTO();
-        }
-
-        formattedAddress += " - " + list.get(position).getENDERECO_CIDADE() + ", " + list.get(position).getENDERECO_ESTADO();
-
-        holder.name.setText(list.get(position).getENDERECO_NOME());
-        holder.address.setText(formattedAddress);
+        holder.name.setText(item.getENDERECO_NOME());
+        holder.address.setText(SharedUtils.formatAddres(item.getENDERECO_LOGRADOURO(), item.getENDERECO_NUMERO(), item.getENDERECO_COMPLEMENTO(), item.getENDERECO_ESTADO(), item.getENDERECO_CIDADE()));
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, AddressRegistryActivity.class);
 
-            intent.putExtra("id", String.valueOf(list.get(position).getENDERECO_ID()));
+            intent.putExtra("id", String.valueOf(item.getENDERECO_ID()));
             context.startActivity(intent);
         });
     }

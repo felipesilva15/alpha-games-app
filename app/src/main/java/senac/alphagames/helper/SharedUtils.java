@@ -39,4 +39,16 @@ public class SharedUtils {
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
         image.setPadding(32, 32, 32, 32);
     }
+
+    public static String formatAddres(String streetAddres, String number, String complement, String state, String city) {
+        String formattedAddress = streetAddres + ", " + number;
+
+        if (!complement.isEmpty()) {
+            formattedAddress += " - " + complement;
+        }
+
+        formattedAddress += " - " + city + ", " + state;
+
+        return formattedAddress;
+    }
 }
