@@ -10,6 +10,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import senac.alphagames.model.Address;
 import senac.alphagames.model.CartItem;
+import senac.alphagames.model.Order;
 import senac.alphagames.model.User;
 
 public interface UserClient {
@@ -33,4 +34,7 @@ public interface UserClient {
 
     @GET("user/cart")
     Call<List<CartItem>> getCartItems();
+
+    @GET("user/orders")
+    Call<List<Order>> getOrders();
 }
