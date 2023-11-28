@@ -5,7 +5,9 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Currency;
+import java.util.Date;
 import java.util.Locale;
 
 import senac.alphagames.R;
@@ -51,5 +53,21 @@ public class SharedUtils {
         formattedAddress += " - " + address.getENDERECO_CIDADE() + ", " + address.getENDERECO_ESTADO();
 
         return formattedAddress;
+    }
+
+    public static String formatCode(int code, int lenght) {
+        if (lenght == 0) {
+            lenght = 6;
+        }
+
+        String mask = "#%" + lenght + "s";
+
+        return String.format(mask, code).replace(" ", "0");
+    }
+
+    public static String formatDate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        return sdf.format(date);
     }
 }

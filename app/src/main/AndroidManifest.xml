@@ -16,6 +16,11 @@
         android:theme="@style/Theme.AlphaGames"
         tools:targetApi="31">
         <activity
+            android:name=".ui.order.OrderActivity"
+            android:exported="false"
+            android:label="Meus pedidos"
+            android:theme="@style/DefaultThemeWithActionBar"/>
+        <activity
             android:name=".ui.personalData.PersonalDataActivity"
             android:exported="false"
             android:label="Dados pessoais"

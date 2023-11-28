@@ -26,6 +26,7 @@ import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.User;
 import senac.alphagames.ui.address.AddressConsultActivity;
 import senac.alphagames.ui.login.LoginActivity;
+import senac.alphagames.ui.order.OrderActivity;
 import senac.alphagames.ui.personalData.PersonalDataActivity;
 
 public class ProfileFragment extends Fragment {
@@ -94,7 +95,7 @@ public class ProfileFragment extends Fragment {
                     getContext().startActivity(intent);
                 });
                 txtAddresses.setOnClickListener(view -> getContext().startActivity(new Intent(getContext(), AddressConsultActivity.class)));
-                txtOrders.setOnClickListener(view -> {});
+                txtOrders.setOnClickListener(view -> getContext().startActivity(new Intent(getContext(), OrderActivity.class)));
                 txtLogout.setOnClickListener(view -> logout());
 
                 loadingDialog.cancel();
