@@ -43,7 +43,7 @@ public class SharedUtils {
         image.setPadding(32, 32, 32, 32);
     }
 
-    public static String formatAddres(Address address) {
+    public static String formatAddress(Address address) {
         String formattedAddress = address.getENDERECO_LOGRADOURO() + ", " + address.getENDERECO_NUMERO();
 
         if (!address.getENDERECO_COMPLEMENTO().isEmpty()) {

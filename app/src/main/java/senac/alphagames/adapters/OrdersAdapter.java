@@ -17,6 +17,7 @@ import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.Address;
 import senac.alphagames.model.Order;
 import senac.alphagames.ui.address.AddressRegistryActivity;
+import senac.alphagames.ui.order.OrderDetailsActivity;
 
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder> {
     Context context;
@@ -42,7 +43,10 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
         holder.status.setText(item.getStatus().getSTATUS_DESC());
 
         holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, OrderDetailsActivity.class);
 
+            intent.putExtra("id", String.valueOf(item.getPEDIDO_ID()));
+            context.startActivity(intent);
         });
     }
 

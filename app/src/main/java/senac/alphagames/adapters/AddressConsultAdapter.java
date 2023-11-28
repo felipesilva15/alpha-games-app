@@ -15,9 +15,7 @@ import java.util.List;
 import senac.alphagames.R;
 import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.Address;
-import senac.alphagames.model.Product;
 import senac.alphagames.ui.address.AddressRegistryActivity;
-import senac.alphagames.ui.product.ProductActivity;
 
 public class AddressConsultAdapter extends RecyclerView.Adapter<AddressConsultAdapter.ViewHolder> {
     Context context;
@@ -39,7 +37,7 @@ public class AddressConsultAdapter extends RecyclerView.Adapter<AddressConsultAd
         Address item = list.get(position);
 
         holder.name.setText(item.getENDERECO_NOME());
-        holder.address.setText(SharedUtils.formatAddres(item));
+        holder.address.setText(SharedUtils.formatAddress(item));
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, AddressRegistryActivity.class);
