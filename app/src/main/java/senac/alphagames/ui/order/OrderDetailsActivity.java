@@ -2,6 +2,8 @@ package senac.alphagames.ui.order;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,6 +13,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import senac.alphagames.R;
+import senac.alphagames.adapters.OrderDetailsItemAdapter;
+import senac.alphagames.adapters.OrdersAdapter;
 import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.api.service.OrderClient;
 import senac.alphagames.helper.ErrorUtils;
@@ -24,6 +28,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
     int id;
     Order order;
     TextView numberText, dateText, statusText, addressText, totalText;
+    OrderDetailsItemAdapter orderDetailsItemAdapter;
+    RecyclerView itemsRec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         statusText = findViewById(R.id.TextViewOrderDetailsStatus);
         addressText = findViewById(R.id.TextViewOrderDetailsAddress);
         totalText = findViewById(R.id.TextViewOrderDetailsTotal);
+        itemsRec = findViewById(R.id.RecyclerViewOrderDetailsItems);
 
         loadingDialog = new LoadingDialog(this);
 
@@ -98,6 +105,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 statusText.setText(order.getStatus().getSTATUS_DESC());
                 addressText.setText(SharedUtils.formatAddress(order.getAddress()));
                 totalText.setText(SharedUtils.formatToCurrency(total));
+
+                itemsRec.setLayoutManager(new LinearLayoutManager(OrderDetailsActivity.this, RecyclerView.VERTICAL, false));
+                orderDetailsItemAdapter = new OrderDetailsItemAdapter(OrderDetailsActivity.this, order.getItems());
+                itemsRec.setAdapter(orderDetailsItemAdapter);
 
                 loadingDialog.cancel();
             }
