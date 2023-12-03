@@ -9,4 +9,11 @@
         <item name="backgroundTint">@color/primary</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="DefaultCustomToast">
+        <item name="stTextColor">#000</item>
+        <item name="stLength">LONG</item>
+        <item name="stRadius">4dp</item>
+        <item name="elevation">4dp</item>
+        <item name="stTextSize">14sp</item>
+    </style>
 </resources>

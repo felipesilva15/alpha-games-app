@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -142,7 +143,7 @@ public class ProductActivity extends AppCompatActivity {
                     return;
                 }
 
-                SharedUtils.showMessage(ProductActivity.this, "Atenção", "Item adicionado ao carrinho!");
+                StyleableToast.makeText(ProductActivity.this, "Item adicionado ao carrinho!", R.style.DefaultCustomToast).show();
                 loadingDialog.cancel();
             }
 

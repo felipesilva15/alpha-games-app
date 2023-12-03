@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,6 +26,7 @@ import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.User;
 import senac.alphagames.ui.address.AddressConsultActivity;
+import senac.alphagames.ui.cart.CartActivity;
 import senac.alphagames.ui.login.LoginActivity;
 import senac.alphagames.ui.order.OrderActivity;
 import senac.alphagames.ui.personalData.PersonalDataActivity;
@@ -131,7 +133,7 @@ public class ProfileFragment extends Fragment {
                         .apply();
 
                 // Show successfully logout message
-                SharedUtils.showMessage(getContext(), "Atenção", "Logout efetuado com sucesso.");
+                StyleableToast.makeText(getContext(), "Logout efetuado com sucesso!", R.style.DefaultCustomToast).show();
                 loadingDialog.cancel();
 
                 // What to do?
