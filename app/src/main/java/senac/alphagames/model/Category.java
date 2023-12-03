@@ -6,8 +6,7 @@ public class Category {
     private String CATEGORIA_DESC;
     private int CATEGORIA_ATIVO;
 
-    public Category() {
-    }
+    public Category() { }
 
     public int getCATEGORIA_ID() {
         return CATEGORIA_ID;

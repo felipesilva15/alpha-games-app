@@ -14,8 +14,7 @@ public class Product {
     private Category category;
     private List<ProductImage> images;
 
-    public Product() {
-    }
+    public Product() { }
 
     public int getPRODUTO_ID() {
         return PRODUTO_ID;
