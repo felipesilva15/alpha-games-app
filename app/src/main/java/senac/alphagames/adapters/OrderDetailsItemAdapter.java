@@ -1,9 +1,6 @@
 package senac.alphagames.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Paint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +18,6 @@ import senac.alphagames.R;
 import senac.alphagames.helper.GlideTrustManager;
 import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.OrderItems;
-import senac.alphagames.model.Product;
-import senac.alphagames.ui.product.ProductActivity;
 
 public class OrderDetailsItemAdapter extends RecyclerView.Adapter<OrderDetailsItemAdapter.ViewHolder> {
     Context context;

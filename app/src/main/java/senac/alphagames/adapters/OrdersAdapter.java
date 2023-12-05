@@ -14,9 +14,7 @@ import java.util.List;
 
 import senac.alphagames.R;
 import senac.alphagames.helper.SharedUtils;
-import senac.alphagames.model.Address;
 import senac.alphagames.model.Order;
-import senac.alphagames.ui.address.AddressRegistryActivity;
 import senac.alphagames.ui.order.OrderDetailsActivity;
 
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder> {

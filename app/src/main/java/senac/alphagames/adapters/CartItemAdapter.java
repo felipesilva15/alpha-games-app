@@ -29,7 +29,6 @@ import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.CartItem;
 import senac.alphagames.ui.cart.CartActivity;
-import senac.alphagames.ui.product.ProductActivity;
 
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHolder> {
