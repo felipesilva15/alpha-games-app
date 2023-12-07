@@ -1,17 +1,13 @@
 package senac.alphagames.ui.address;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Button;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,7 +18,6 @@ import senac.alphagames.api.service.AddressClient;
 import senac.alphagames.api.service.CepClient;
 import senac.alphagames.helper.ErrorUtils;
 import senac.alphagames.helper.LoadingDialog;
-import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.Address;
 import senac.alphagames.model.SearchCepDTO;
 

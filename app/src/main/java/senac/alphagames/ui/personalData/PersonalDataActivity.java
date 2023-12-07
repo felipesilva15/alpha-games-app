@@ -18,13 +18,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import senac.alphagames.R;
 import senac.alphagames.api.HttpServiceGenerator;
-import senac.alphagames.api.service.AddressClient;
 import senac.alphagames.api.service.UserClient;
 import senac.alphagames.helper.ErrorUtils;
 import senac.alphagames.helper.LoadingDialog;
-import senac.alphagames.model.Address;
 import senac.alphagames.model.User;
-import senac.alphagames.ui.address.AddressRegistryActivity;
 
 public class PersonalDataActivity extends AppCompatActivity {
     private TextInputLayout nameInput, cpfInput, emailInput, passwordInput, passwordConfirmInput;

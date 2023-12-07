@@ -1,16 +1,14 @@
 package senac.alphagames.ui.address;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Button;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -19,7 +17,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import senac.alphagames.R;
 import senac.alphagames.adapters.AddressConsultAdapter;
-import senac.alphagames.adapters.ExploreProductsAdapter;
 import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.api.service.UserClient;
 import senac.alphagames.helper.ErrorUtils;

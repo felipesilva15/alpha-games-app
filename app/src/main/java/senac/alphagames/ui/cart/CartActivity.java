@@ -1,18 +1,15 @@
 package senac.alphagames.ui.cart;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +18,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import senac.alphagames.R;
-import senac.alphagames.adapters.AddressConsultAdapter;
 import senac.alphagames.adapters.CartItemAdapter;
 import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.api.service.UserClient;
@@ -30,7 +26,6 @@ import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.Address;
 import senac.alphagames.model.CartItem;
-import senac.alphagames.ui.address.AddressConsultActivity;
 
 public class CartActivity extends AppCompatActivity {
     AutoCompleteTextView addressInput;

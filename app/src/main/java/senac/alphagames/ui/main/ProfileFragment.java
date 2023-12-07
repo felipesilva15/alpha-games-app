@@ -3,15 +3,12 @@ package senac.alphagames.ui.main;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import io.github.muddz.styleabletoast.StyleableToast;
 import retrofit2.Call;
@@ -23,11 +20,8 @@ import senac.alphagames.api.service.AuthClient;
 import senac.alphagames.api.service.UserClient;
 import senac.alphagames.helper.ErrorUtils;
 import senac.alphagames.helper.LoadingDialog;
-import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.User;
 import senac.alphagames.ui.address.AddressConsultActivity;
-import senac.alphagames.ui.cart.CartActivity;
-import senac.alphagames.ui.login.LoginActivity;
 import senac.alphagames.ui.order.OrderActivity;
 import senac.alphagames.ui.personalData.PersonalDataActivity;
 

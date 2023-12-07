@@ -1,20 +1,19 @@
 package senac.alphagames.ui.order;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.TextView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import senac.alphagames.R;
 import senac.alphagames.adapters.OrderDetailsItemAdapter;
-import senac.alphagames.adapters.OrdersAdapter;
 import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.api.service.OrderClient;
 import senac.alphagames.helper.ErrorUtils;

@@ -1,11 +1,11 @@
 package senac.alphagames.ui.splash;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import senac.alphagames.R;
 import senac.alphagames.ui.main.MainActivity;

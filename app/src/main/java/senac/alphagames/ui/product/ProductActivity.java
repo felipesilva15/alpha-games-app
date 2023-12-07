@@ -16,7 +16,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import senac.alphagames.R;
-import senac.alphagames.adapters.ExploreProductsAdapter;
 import senac.alphagames.adapters.ProductImageAdapter;
 import senac.alphagames.api.HttpServiceGenerator;
 import senac.alphagames.api.service.CartClient;
