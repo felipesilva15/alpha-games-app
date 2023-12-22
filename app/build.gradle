@@ -13,6 +13,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,6 +32,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'androidsupportmultidexversion.txt'
     }
 }
 
@@ -70,4 +75,7 @@ dependencies {
 
     // Styleable Toast
     implementation 'io.github.muddz:styleabletoast:2.4.0'
+
+    // Multidex
+    implementation 'com.android.support:multidex:1.0.3'
 }
