@@ -149,7 +149,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/ButtonAddressConsultAddAddres"
+            android:id="@+id/ButtonCartCheckout"
             style="@style/BaseButtonStyleWithMaterial"
             android:text="Finalizar compra" />
 
