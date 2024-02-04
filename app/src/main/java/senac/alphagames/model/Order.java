@@ -13,6 +13,12 @@ public class Order {
     private OrderStatus status;
     private List<OrderItems> items;
 
+    public Order() { }
+
+    public Order(int ENDERECO_ID) {
+        this.ENDERECO_ID = ENDERECO_ID;
+    }
+
     public int getPEDIDO_ID() {
         return PEDIDO_ID;
     }
