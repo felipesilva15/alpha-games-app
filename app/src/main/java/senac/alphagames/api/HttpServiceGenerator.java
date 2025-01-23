@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpServiceGenerator {
-    private static final String BASE_URL = "http://srv472013.hstgr.cloud:9101/api/";
+    private static final String BASE_URL = "https://alpha-games-api.felipesilva15.com.br/api/";
 
     private static final OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
 

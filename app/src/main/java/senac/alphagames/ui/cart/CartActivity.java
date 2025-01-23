@@ -2,8 +2,10 @@ package senac.alphagames.ui.cart;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -20,12 +22,16 @@ import retrofit2.Response;
 import senac.alphagames.R;
 import senac.alphagames.adapters.CartItemAdapter;
 import senac.alphagames.api.HttpServiceGenerator;
+import senac.alphagames.api.service.AddressClient;
+import senac.alphagames.api.service.OrderClient;
 import senac.alphagames.api.service.UserClient;
 import senac.alphagames.helper.ErrorUtils;
 import senac.alphagames.helper.LoadingDialog;
 import senac.alphagames.helper.SharedUtils;
 import senac.alphagames.model.Address;
 import senac.alphagames.model.CartItem;
+import senac.alphagames.model.Order;
+import senac.alphagames.ui.address.AddressRegistryActivity;
 
 public class CartActivity extends AppCompatActivity {
     AutoCompleteTextView addressInput;
@@ -35,6 +41,7 @@ public class CartActivity extends AppCompatActivity {
     CartItemAdapter cartItemAdapter;
     RecyclerView cartItemRec;
     TextView subtotalText, discountText, totalText;
+    Button checkoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +60,13 @@ public class CartActivity extends AppCompatActivity {
         subtotalText = findViewById(R.id.TextViewCartSubtotal);
         discountText = findViewById(R.id.TextViewCartDiscount);
         totalText = findViewById(R.id.TextViewCartTotal);
+        checkoutButton = findViewById(R.id.ButtonCartCheckout);
 
         loadingDialog = new LoadingDialog(this);
 
         getCartItems();
+
+        checkoutButton.setOnClickListener(view -> checkout());
     }
 
     @Override
@@ -162,5 +172,34 @@ public class CartActivity extends AppCompatActivity {
         subtotalText.setText(SharedUtils.formatToCurrency(subtotal));
         discountText.setText(SharedUtils.formatToCurrency(discount));
         totalText.setText(SharedUtils.formatToCurrency(subtotal - discount));
+    }
+
+    private void checkout() {
+        loadingDialog.show();
+
+        Order order = new Order();
+
+        OrderClient client = HttpServiceGenerator.createHttpService(this, OrderClient.class);
+        Call<Void> call = client.createOrder(order);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    ErrorUtils.validateUnsuccessfulResponse(CartActivity.this, response);
+                    loadingDialog.cancel();
+
+                    return;
+                }
+
+                onBackPressed();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                loadingDialog.cancel();
+                ErrorUtils.showErrorMessage(CartActivity.this, getString(R.string.network_error_message));
+            }
+        });
     }
 }
