@@ -43,7 +43,7 @@ public class Address {
     }
 
     public String getENDERECO_COMPLEMENTO() {
-        return ENDERECO_COMPLEMENTO;
+        return ENDERECO_COMPLEMENTO != null ? ENDERECO_COMPLEMENTO : "";
     }
 
     public String getENDERECO_CIDADE() {

@@ -3,6 +3,7 @@ package senac.alphagames.ui.cart;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -42,6 +43,7 @@ public class CartActivity extends AppCompatActivity {
     RecyclerView cartItemRec;
     TextView subtotalText, discountText, totalText;
     Button checkoutButton;
+    int selectAddressId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +92,6 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void loadUserAddresses() {
-        // loadingDialog.show();
-
         UserClient client = HttpServiceGenerator.createHttpService(CartActivity.this, UserClient.class);
         Call<List<Address>> call = client.getAdresses();
 
@@ -100,7 +100,6 @@ public class CartActivity extends AppCompatActivity {
             public void onResponse(Call<List<Address>> call, Response<List<Address>> response) {
                 if (!response.isSuccessful()) {
                     ErrorUtils.validateUnsuccessfulResponse(CartActivity.this, response);
-                    // loadingDialog.cancel();
 
                     return;
                 }
@@ -115,12 +114,16 @@ public class CartActivity extends AppCompatActivity {
                 ArrayAdapter arrayAdapter = new ArrayAdapter(CartActivity.this, R.layout.dropdown_item, options);
                 addressInput.setAdapter(arrayAdapter);
 
-                // loadingDialog.cancel();
+                addressInput.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        selectAddressId = addressList.get(i).getENDERECO_ID();
+                    }
+                });
             }
 
             @Override
             public void onFailure(Call<List<Address>> call, Throwable t) {
-                // loadingDialog.cancel();
                 ErrorUtils.showErrorMessage(CartActivity.this, getString(R.string.network_error_message));
             }
         });
@@ -174,10 +177,28 @@ public class CartActivity extends AppCompatActivity {
         totalText.setText(SharedUtils.formatToCurrency(subtotal - discount));
     }
 
+    private boolean isValidOrder() {
+        if (selectAddressId == 0) {
+            SharedUtils.showMessage(CartActivity.this, "Atenção", "Selecione um endereço!");
+            return false;
+        }
+
+        if (cartItemList.isEmpty()) {
+            SharedUtils.showMessage(CartActivity.this, "Atenção", "Coloque pelo menos um item no carrinho para finalizar a compra!");
+            return false;
+        }
+
+        return true;
+    }
+
     private void checkout() {
+        if (!isValidOrder()) {
+            return;
+        }
+
         loadingDialog.show();
 
-        Order order = new Order();
+        Order order = new Order(selectAddressId);
 
         OrderClient client = HttpServiceGenerator.createHttpService(this, OrderClient.class);
         Call<Void> call = client.createOrder(order);
